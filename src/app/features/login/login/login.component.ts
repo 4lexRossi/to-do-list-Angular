@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/shared/services/login.service';
-import { UserContextService } from 'src/app/shared/services/user-context.service';
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/state/app.reducer";
+import * as fromAppActions from '../../../state/app.actions';
 
 @Component({
   templateUrl: './login.component.html',
@@ -15,16 +15,10 @@ export class LoginComponent {
     email: new FormControl(''),
   });
 
-  constructor(private router: Router,
-              private loginService: LoginService,
-              private userContext: UserContextService) {
+  constructor(private store: Store<AppState>) {
   }
 
   login() {
-    this.loginService.login(this.form.value.name, this.form.value.email)
-      .subscribe(user => {
-        this.userContext.user = user;
-        this.router.navigate(['d']);
-      });
+    this.store.dispatch(fromAppActions.doLogin(this.form.value));
   }
 }
