@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-
-import { UserContextService } from 'src/app/shared/services/user-context.service';
+import { select, Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.reducer';
+import * as fromAppSeletors from '../../../state/app.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jv-dashboard',
@@ -9,6 +11,9 @@ import { UserContextService } from 'src/app/shared/services/user-context.service
 })
 export class DashboardComponent {
 
-  constructor(public userContext: UserContextService) {
+  name$: Observable<string>;
+
+  constructor(private store: Store<AppState>) {
+    this.name$ = this.store.pipe(select(fromAppSeletors.selecUserName))
   }
 }
