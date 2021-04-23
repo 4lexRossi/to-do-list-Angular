@@ -10,6 +10,7 @@ import { ListComponent } from './list/list.component';
 import { ListService } from './services/list.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { EffectsModule } from '@ngrx/effects';
     LastTodosComponent,
     CreateTodoComponent,
     ListComponent,
+    ListItemComponent,
   ],
   providers: [
     ListService,
