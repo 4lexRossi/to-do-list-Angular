@@ -1,0 +1,21 @@
+import { ChangeDetectionStrategy, Component, Input, EventEmitter, Output } from '@angular/core';
+import { Todo } from 'src/app/shared/models/todo.model';
+
+@Component({
+  selector: 'jv-list-item',
+  templateUrl: './list-item.component.html',
+  styleUrls: ['./list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ListItemComponent {
+
+  @Input() item: Todo;
+  @Input() markAsDone = new EventEmitter<number>();
+  @Output() remove = new EventEmitter<number>();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
